@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+:root {
+    --dark: #44000D;
+    --moderate: #83142C;
+    --light: #AD1D45;
+    --yellow: #F9D276;
+    --text: #CDCDCD;
+}
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #44000D;
+}
+body * {
+    background-color: var(--moderate);
+}
+.content {
+    padding: 40px 60px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 90%;
+    width: 40%;
+    background-color: var(--moderate);
+    border-radius: 20px;
+}
+::placeholder {
+    font-weight: bold;
+    color: var(--dark);
+    opacity: 80%;
+}
+.content h1 {
+    color: var(--yellow);
+    font-size: 50px;
+    height: 15%;
+}
+.error-msg {
+    font-weight: bold;
+    color: var(--yellow);
+    margin-bottom: 10px;
+}
+.input-field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.input-field input {
+    background-color: var(--light);
+    color: var(--dark);
+    padding: 15px 20px;
+    width: 100%;
+    font-weight: bold;
+    font-size: 20px;
+    border: none;
+    transition: 200ms all ease-in-out;
+}
+.input-field input:focus {
+    outline: none;
+    border-bottom: 3px solid var(--yellow);
+    transition: 200ms all ease-in-out;
+}
+.btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+.btn button {
+    background-color: var(--yellow);
+    border: none;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px 100px;
+    transition: 200ms all ease-in-out;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn button:hover {
+    transform: scale(1.02);
+    transition: 200ms all ease-in-out;
+}
+.login {
+    display: flex;
+    justify-content: center;
+    color: var(--text);
+    margin: 10px 0;
+    font-weight: bold;
+}
+.login a {
+    color: var(--yellow);
+}
