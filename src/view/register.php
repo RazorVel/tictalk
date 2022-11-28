@@ -1,5 +1,10 @@
+<?php
+require_once('../controller/session_manager.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,10 +12,11 @@
     <link rel="stylesheet" href="../css/register.css">
     <title>Register</title>
 </head>
+
 <body>
     <div class="content">
         <h1>Register</h1>
-        <form method="POST" action="#" id="register">
+        <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" id="register">
             <div class="error-msg"></div>
             <div class="input-field">
                 <input type="text" placeholder="Name" name="name" id="name" required>
@@ -25,8 +31,26 @@
             </div>
         </form>
         <div class="login">
-            <p>Have an account? <a href="#">Login</a></p> 
+            <p>Have an account? <a href="./index.php">Login</a></p>
         </div>
     </div>
+
+    <?php
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        require_once('../controller/db_tools.php');
+
+        $name = $_POST['name'];
+        $dob = $_POST['dob'];
+        $phone = $_POST['phone-num'];
+        $email = $_POST['email'];
+        $pass = $_POST['pass'];
+        $pass_confirm = $_POST['retype-pass'];
+
+        if ($pass == $pass_confirm) {
+            register($connection, $name, $dob, $phone, $email, $pass);
+        }
+    }
+    ?>
 </body>
+
 </html>
