@@ -7,7 +7,7 @@ topNavbar.innerHTML = `
         <h1>TicTalk</h1>
         <div class="main-nav">
             <ul>
-                <li class="bx bxs-user"></li>
+                <a href="./friend-list.html"><li class="bx bxs-user"></li></a>
                 <li class="bx bxs-message-rounded-dots"></li>
                 <li class="bx bxs-user-plus"></li>
                 <li class="bx bxs-message-rounded-add"></li>
@@ -58,6 +58,10 @@ class ChatList extends HTMLElement {
     }
     attributeChangedCallback(name, oldValue, newValue) {
         this.shadowRoot.querySelector('.wrapper img').src = this.getAttribute('avatar');
+    }
+
+    connectedCallback() {
+
     }
 }
 
