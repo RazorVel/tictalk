@@ -9,3 +9,14 @@ create table Users (
 
     primary key (Email)
 );
+
+create table Chats (
+    ChatID int not null auto_increment,
+    Source varchar(255) not null,
+    Destination varchar(255) not null,
+    Description varchar(255) not null,
+
+    primary key (ChatID),
+    foreign key (Source) References Users(Email),
+    foreign key (Destination) References Users(Email)
+);
