@@ -227,9 +227,20 @@ require_once('../controller/features.php');
                         </form>
                     </div>
 
-                    <form action="./upload_message.php" method="POST" id="submit-msg" enctype="multipart/form-data">
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" id="submit-msg"
+                        enctype="multipart/form-data">
                         <div class="chat-box">
-                            <input type="text" placeholder="Type a message">
+
+                            <?php
+                            echo "
+                            <input type=\"hidden\" name=\"contact\" value=\"{$_GET['contact']}\">
+                            <input type=\"hidden\" name=\"source\" value=\"{$_SESSION['name']}\">
+                            <input type=\"hidden\" name=\"destination\" value=\"{$email}\">
+                            <input type=\"hidden\" name=\"type\" value=\"text\">
+                            <input type=\"text\" name=\"chat-message\" placeholder=\"Type a message\">
+                            ";
+                            ?>
+
                         </div>
                         <button type="submit" class="bx bx-send"></button>
                     </form>
@@ -238,6 +249,18 @@ require_once('../controller/features.php');
             </div>
         </div>
     </div>
+
+    <?php
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        sendMessage($connection, $_POST['source'], $_POST['destination'], $_POST['type'], $_POST['chat-message']);
+
+        echo "
+            <script>
+                window.location.href='{$_SERVER['PHP_SELF']}?contact={$_POST['contact']}'
+            </script>
+        ";
+    }
+    ?>
 </body>
 
 </html>
