@@ -1,5 +1,7 @@
 <?php
 require_once('../controller/session_manager.php');
+require_once('../controller/db_tools.php');
+require_once('../controller/features.php');
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +13,9 @@ require_once('../controller/session_manager.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/chat.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.js" integrity="sha512-CX7sDOp7UTAq+i1FYIlf9Uo27x4os+kGeoT7rgwvY+4dmjqV0IuE/Bl5hVsjnQPQiTOhAX1O2r2j5bjsFBvv/A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.js"
+        integrity="sha512-CX7sDOp7UTAq+i1FYIlf9Uo27x4os+kGeoT7rgwvY+4dmjqV0IuE/Bl5hVsjnQPQiTOhAX1O2r2j5bjsFBvv/A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="../js/chat.js" defer></script>
     <script src="../js/dropdown.js" defer></script>
     <script src="../js/favourite.js" defer></script>
@@ -24,7 +28,9 @@ require_once('../controller/session_manager.php');
 
         <div class="main-nav">
             <ul>
-                <a href="./friend-list.php"><li class="bx bxs-user"></li></a>
+                <a href="./friend-list.php">
+                    <li class="bx bxs-user"></li>
+                </a>
                 <li class="bx bxs-message-rounded-dots active"></li>
                 <li class="bx bxs-user-plus"></li>
                 <li class="bx bxs-message-rounded-add"></li>
@@ -55,22 +61,43 @@ require_once('../controller/session_manager.php');
             </div>
 
             <div class="list">
-                <div class="wrapper">
-                    <img src="../../assets/male.png" alt="">
-                    <div class="info">
-                        <h3>John Doe</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum rerum fugit natus, voluptatem veniam molestias ipsum consequatur, dignissimos molestiae sint vero eius aperiam illo aliquid quaerat vel! Quibusdam, doloribus quasi.</p>
-                    </div>
-                    <div class="bx bx-heart"></div>
-                </div>
-                <div class="wrapper">
-                    <img src="../../assets/female.png" alt="">
-                    <div class="info">
-                        <h3>Testing</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum rerum fugit natus, voluptatem veniam molestias ipsum consequatur, dignissimos molestiae sint vero eius aperiam illo aliquid quaerat vel! Quibusdam, doloribus quasi.</p>
-                    </div>
-                    <div class="bx bx-heart"></div>
-                </div>
+                <?php
+                $statement = $connection->prepare("
+                        select
+                            Name, Email
+                        from Users
+                        where Email <> ?
+                    ");
+
+                $statement->bind_param('s', $_SESSION['name']);
+
+                $statement->execute();
+
+                $result = $statement->get_result();
+
+                $contact_list = array();
+
+                $index = 0;
+                while ($row = $result->fetch_assoc()) {
+                    echo "
+                        <a href=\"./chat.php?contact={$index}\" style=\"text-decoration:none;\">
+                            <div class=\"wrapper\"> 
+                                <img src=\"../../assets/male.png\" alt=\"\">
+                                
+                                <div class=\"info\">
+                                    <h3>{$row['Name']}</h3>
+                                    <p></p>
+                                </div>
+
+                                <div class=\"bx bx-heart\"></div>
+                            </div>
+                        </a>
+                    ";
+
+                    array_push($contact_list, $row);
+                    $index++;
+                }
+                ?>
             </div>
         </div>
 
@@ -84,7 +111,16 @@ require_once('../controller/session_manager.php');
                 <div class="chat-header">
                     <div class="profile">
                         <img src="../../assets/male.png" alt="">
-                        <p>John Doe</p>
+                        <?php
+                        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                            $name = $contact_list[$_GET['contact']]['Name'];
+                            $email = $contact_list[$_GET['contact']]['Email'];
+
+                            echo "
+                                <p>{$name}</p>
+                            ";
+                        }
+                        ?>
                     </div>
                     <div class="chat-icon">
                         <div class="bx bx-search-alt-2"></div>
@@ -94,14 +130,66 @@ require_once('../controller/session_manager.php');
 
                 <div class="chat-content">
                     <div class="chat-content-list">
-                        <div class="bubble-chat user">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum rerum fugit natus, voluptatem veniam molestias ipsum consequatur, dignissimos molestiae sint vero eius aperiam illo aliquid quaerat vel! Quibusdam, doloribus quasi.</div>
+                        <!-- <div class="bubble-chat user">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum
+                            rerum fugit natus, voluptatem veniam molestias ipsum consequatur, dignissimos molestiae sint
+                            vero eius aperiam illo aliquid quaerat vel! Quibusdam, doloribus quasi.</div> -->
+                        <?php
+                        function printMessage($agent, $type, $description)
+                        {
+                            if ($type == 'text') {
+                                echo "
+                                    <div class=\"bubble-chat {$agent}\">
+                                        {$description}
+                                    </div>
+                                ";
+                            } elseif ($type == 'image') {
+                                //pending
+                            }
+                        }
+
+                        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                            $user = retrieveMessage($connection, $_SESSION['name'], $email);
+                            $friend = retrieveMessage($connection, $email, $_SESSION['name']);
+
+                            while (true) {
+                                if (!isset($user_row))
+                                    $user_row = $user->fetch_assoc();
+                                if (!isset($friend_row))
+                                    $friend_row = $friend->fetch_assoc();
+
+                                if (!$user_row && !$friend_row) {
+                                    break;
+                                } elseif ($user_row && !$friend_row) {
+                                    printMessage('user', $user_row['Type'], $user_row['Description']);
+                                    unset($user_row);
+                                    continue;
+                                } elseif (!$user_row && $friend_row) {
+                                    printMessage('friend', $friend_row['Type'], $friend_row['Description']);
+                                    unset($friend_row);
+                                    continue;
+                                } else {
+                                    $user_time = new DateTime($user_row['Time']);
+                                    $friend_time = new DateTime($friend_row['Time']);
+
+                                    if ($user_time <= $friend_time) {
+                                        printMessage('user', $user_row['Type'], $user_row['Description']);
+                                        unset($user_row);
+                                    } else {
+                                        printMessage('friend', $friend_row['Type'], $friend_row['Description']);
+                                        unset($friend_row);
+                                    }
+                                }
+                            }
+                        }
+                        ?>
                     </div>
                 </div>
 
                 <div class="chat-bar">
                     <div class="chat-bar-icon">
                         <div class="bx bx-microphone"></div>
-                        <form action="../controller/upload_controller.php" method="POST" enctype="multipart/form-data" id="upload-file">
+                        <form action="../controller/upload_controller.php" method="POST" enctype="multipart/form-data"
+                            id="upload-file">
 
                             <div class="file-upload">
                                 <div class="upload-list bx bx-paperclip"></div>

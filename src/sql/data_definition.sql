@@ -16,6 +16,7 @@ create table Chats (
     Destination varchar(255) not null,
     Description varchar(255) not null,
     Time datetime not null default now(),
+    Type varchar(255) not null,
 
     primary key (ChatID),
     foreign key (Source) References Users(Email),

@@ -1,16 +1,16 @@
 <?php
-require_once('./db_tools.php');
+require_once('../controller/db_tools.php');
 
-function sendMessage($connection, $src, $dest, $desc)
+function sendMessage($connection, $src, $dest, $type, $desc)
 {
     $statement = $connection->prepare('
         insert into Chats
-            (Source, Destination, Description)
+            (Source, Destination, Type, Description)
         values
-            (?, ?, ?)
+            (?, ?, ?, ?)
     ');
 
-    $statement->bind_param('sss', $src, $dest, $desc);
+    $statement->bind_param('ssss', $src, $dest, $type, $desc);
 
     $statement->execute();
 }

@@ -46,7 +46,7 @@ function connect()
     //probe for a new one otherwise
 
     if (isset($_SESSION['name']) && compare(user_fetch(), $_SESSION)) {
-        if (time() - $_SESSION['last-login'] > 1 * 60 * 60) {
+        if (time() - $_SESSION['last-login'] > 24 * 60 * 60) {
             session_demolish();
         } else {
             if (!in_array($_SERVER['SCRIPT_NAME'], NO_REDIRECT)) {
