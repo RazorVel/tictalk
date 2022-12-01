@@ -43,7 +43,7 @@ require_once('../controller/features.php');
                 <div class="dropdown">
                     <button class="link bx bx-dots-horizontal-rounded"></button>
                     <div class="dropdown-menu">
-                        <a href="#">Log out</a>
+                        <a href="../controller/logout.php">Log out</a>
                     </div>
                 </div>
             </ul>
