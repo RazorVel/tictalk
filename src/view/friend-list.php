@@ -1,3 +1,7 @@
+<?php
+require_once('../controller/session_manager.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
