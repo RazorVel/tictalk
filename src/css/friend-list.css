@@ -353,6 +353,21 @@ header ul {
     /* border: 1px solid red; */
 }
 
+.bubble-chat-img {
+    margin: 5px;
+    width: fit-content;
+    max-width: 30%;
+    border: 1px solid red;
+}
+
+.bubble-chat-img.user {
+    align-self: flex-end;
+}
+
+.bubble-chat-img img {
+    width: 100%;
+}
+
 .bubble-chat.user {
     background-color: var(--yellow);
     align-self: flex-end;
@@ -392,13 +407,6 @@ header ul {
     /* border: 1px solid blue; */
 }
 
-.bx-send {
-    /* width: 4%; */
-    text-align: right;
-    border: none;
-    background-color: transparent;
-}
-
 .chat-bar .bx {
     /* height: 100%: */
     font-size: 30px;
@@ -406,10 +414,17 @@ header ul {
     /* border: 1px solid red; */
 }
 
-.chat-box {
-    /* border: 1px solid red; */
+#submit-msg {
+    width: 95%;
     height: 100%;
-    width: 82%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.chat-box {
+    height: 100%;
+    width: 90%;
     display: flex;
     align-items: center;
 }
@@ -424,6 +439,13 @@ header ul {
     font-weight: none;
     font-size: 15px;
     background-color: var(--moderate);
+}
+
+.bx-send {
+    /* width: 4%; */
+    text-align: right;
+    border: none;
+    background-color: transparent;
 }
 
 .upload-doc > input, .upload-pic > input {

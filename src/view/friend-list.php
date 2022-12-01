@@ -92,15 +92,21 @@ require_once('../controller/session_manager.php');
                 </div>
 
                 <div class="chat-content">
+
                     <div class="chat-content-list">
                         <div class="bubble-chat user">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum rerum fugit natus, voluptatem veniam molestias ipsum consequatur, dignissimos molestiae sint vero eius aperiam illo aliquid quaerat vel! Quibusdam, doloribus quasi.</div>
                     </div>
+
+                    <div class="bubble-chat-img user">
+                        <img src="./Untitled.jpg" alt="">
+                    </div>
+
                 </div>
 
                 <div class="chat-bar">
                     <div class="chat-bar-icon">
                         <div class="bx bx-microphone"></div>
-                        <form action="./UploadController.php" method="POST" enctype="multipart/form-data" id="upload-file">
+                        <form action="../controller/upload_controller.php" method="POST" enctype="multipart/form-data" id="upload-file">
 
                             <div class="file-upload">
                                 <div class="upload-list bx bx-paperclip"></div>
@@ -132,10 +138,14 @@ require_once('../controller/session_manager.php');
 
                         </form>
                     </div>
-                    <div class="chat-box">
-                        <input type="text" placeholder="Type a message">
-                    </div>
-                    <button type="submit" class="bx bx-send"></button>
+
+                    <form action="./upload_message.php" method="POST" id="submit-msg" enctype="multipart/form-data">
+                        <div class="chat-box">
+                            <input type="text" placeholder="Type a message">
+                        </div>
+                        <button type="submit" class="bx bx-send"></button>
+                    </form>
+
                 </div>
             </div>
         </div>

@@ -8,10 +8,11 @@ heartIcon.forEach(icon => {
     })
 })
 
-$('.wrapper').click(function(){
-    if ($(this).hasClass('favourite')) {
-        $(this).prependTo($(this).parent());
+$('.wrapper .bx').click(function(){
+    const par = $(this).parent();
+    if ($(par).hasClass('favourite')) {
+        $(par).prependTo($(par).parent());
     } else {
-        $(this).appendTo($(this).parent());
+        $(par).appendTo($(par).parent());
     }
 })

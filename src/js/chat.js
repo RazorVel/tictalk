@@ -30,6 +30,8 @@ textMsg.addEventListener('keydown', (e) => {
         contentList.appendChild(newMsg);
         contentBox.scrollTo(0, contentBox.scrollHeight);
         textMsg.value = '';
+
+        document.getElementById('submit-msg').submit();
     }
 })
 

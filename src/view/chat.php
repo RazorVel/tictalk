@@ -183,6 +183,11 @@ require_once('../controller/features.php');
                         }
                         ?>
                     </div>
+
+                    <div class="bubble-chat-img user">
+                        <img src="./Untitled.jpg" alt="">
+                    </div>
+
                 </div>
 
                 <div class="chat-bar">
@@ -221,10 +226,14 @@ require_once('../controller/features.php');
 
                         </form>
                     </div>
-                    <div class="chat-box">
-                        <input type="text" placeholder="Type a message">
-                    </div>
-                    <button type="submit" class="bx bx-send"></button>
+
+                    <form action="./upload_message.php" method="POST" id="submit-msg" enctype="multipart/form-data">
+                        <div class="chat-box">
+                            <input type="text" placeholder="Type a message">
+                        </div>
+                        <button type="submit" class="bx bx-send"></button>
+                    </form>
+
                 </div>
             </div>
         </div>
