@@ -53,6 +53,58 @@ header ul {
 .main-nav ul li.active {
     opacity: 100%;
 }
+
+.dropdown {
+    position: relative;
+}
+
+.link {
+    background-color: transparent;
+    border: none;
+}
+
+.bx-dots-horizontal-rounded {
+    font-size: 30px;
+    color: var(--yellow);
+}
+
+.dropdown-menu {
+    position: absolute;
+    right: 0;
+    z-index: 100;
+    top: calc(100% + 0.25rem);
+    background-color: var(--yellow);
+    opacity: 0;
+    /* height: 20px; */
+    width: 100px;
+    pointer-events: none;
+    transform: translateY(-10px);
+    border-radius: 5px;
+    transition: 200ms ease-in-out;
+}
+
+.dropdown-menu a {
+    padding: 5px 20px;
+    text-align: right;
+    display: block;
+    border-radius: 5px;
+    font-size: 15px;
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    /* border: 1px solid red; */
+}
+
+.dropdown-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.dropdown.active > .link + .dropdown-menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
 .content {
     height: 92vh;
     display: flex;
@@ -221,13 +273,16 @@ header ul {
     /* border: 1px solid black; */
     color: var(--yellow);
 }
+
 .chat-content {
     height: 81%;
     overflow-y: scroll;
     scrollbar-color: var(--yellow) var(--dark);
     scrollbar-width: thin;
     /* border: 1px solid blue; */
+    position: relative;
 }
+
 .chat-content-list {
     /* height: 1000px; */
     min-height: 100%;
@@ -237,6 +292,7 @@ header ul {
     flex-direction: column;
     justify-content: flex-end;
 }
+
 .bubble-chat {
     margin: 5px 0;
     width: fit-content;
@@ -246,13 +302,16 @@ header ul {
     border-radius: 5px;
     /* border: 1px solid red; */
 }
+
 .bubble-chat.user {
     background-color: var(--yellow);
     align-self: flex-end;
 }
+
 .bubble-chat.friend + .bubble-chat.userr {
     margin: 10px 0;
 }
+
 .chat-bar {
     height: 9%;
     /* border: 1px solid green; */
@@ -262,14 +321,18 @@ header ul {
     justify-content: space-between;
     align-items: center;
 }
+
 .chat-bar .bx {
     /* border: 1px solid red; */
     border-radius: 100%;
-    padding: 5px;
+    padding: 10px;
 }
-.chat-bar .bx:hover {
+
+.chat-bar .bx:hover, .chat-bar .bx:focus {
     background-color: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
 }
+
 .chat-bar-icon {
     width: 9%;
     height: 100%;
@@ -278,23 +341,29 @@ header ul {
     align-items: center;
     /* border: 1px solid blue; */
 }
-.bx-smile {
+
+.bx-send {
     /* width: 4%; */
     text-align: right;
+    border: none;
+    background-color: transparent;
 }
+
 .chat-bar .bx {
     /* height: 100%: */
     font-size: 30px;
     color: var(--yellow);
     /* border: 1px solid red; */
 }
+
 .chat-box {
     /* border: 1px solid red; */
     height: 100%;
-    width: 85%;
+    width: 82%;
     display: flex;
     align-items: center;
 }
+
 .chat-box input {
     height: 100%;
     width: 100%;
@@ -305,4 +374,113 @@ header ul {
     font-weight: none;
     font-size: 15px;
     background-color: var(--moderate);
+}
+
+.upload-doc > input, .upload-pic > input {
+    display: none;
+}
+
+.file-upload {
+    position: relative;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.file-upload .upload-list {
+    background-color: transparent;
+    border: none;
+}
+
+.upload-dropdown-menu {
+    z-index: 100;
+    position: absolute;
+    bottom: calc(100% + 0.8rem);
+    pointer-events: none;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+}
+
+.file-upload.active > .upload-list + .upload-dropdown-menu {
+    pointer-events: auto;
+    opacity: 1;
+    transition: 200ms ease-in-out;
+}
+
+.upload-dropdown-menu .upload-doc {
+    margin-bottom: 0.8rem;
+}
+
+.upload-dropdown-menu .bx {
+    border: none;
+    color: var(--text);
+}
+
+.upload-dropdown-menu .bx-file, .upload-dropdown-menu .bx-file:hover, .upload-dropdown-menu .bx-file:focus {
+    background-color: rgb(0, 82, 0);
+}
+
+.upload-dropdown-menu .bx-photo-album, .upload-dropdown-menu .bx-photo-album:hover, .upload-dropdown-menu .bx-photo-album:focus {
+    background-color: rgb(135, 88, 0);
+}
+
+.file-preview {
+    display: none;
+}
+
+.file-preview.active {
+    z-index: 10;
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: var(--dark);
+    top: 0;
+    right: 0;
+}
+
+.file-preview .bx-x {
+    /* color: var(--text); */
+    font-size: 30px;
+    padding: 10px;
+    /* border: 1px solid white; */
+    height: 8%;
+    /* border: 1px solid white; */
+}
+
+.file-preview .bx-x:hover {
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.preview-image {
+    /* display: flex; */
+    height: 82%;
+    /* justify-content: center; */
+    position: relative;
+    /* align-items: center; */
+    border: 1px solid red;
+    width: 100%;
+}
+
+.preview-image img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid blue;
+    width: 50%;
+    height: 80%;
+}
+
+.submit-file {
+    border: 1px solid red;
+    padding: 10px 20px;
+    height: 10%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.file-preview .bx-send {
+    border: 1px solid red;
 }

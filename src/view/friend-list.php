@@ -64,11 +64,12 @@
         </div>
 
         <div class="chat">
-            <div class="empty-list active">
+            <div class="empty-list">
                 <div class="bx bx-message-dots"></div>
                 <p>Start a new conversation!</p>
             </div>
-            <div class="chat-list">
+
+            <div class="chat-list active">
                 <div class="chat-header">
                     <div class="profile">
                         <img src="../../assets/male.png" alt="">
@@ -79,32 +80,52 @@
                         <div class="bx bx-dots-vertical-rounded"></div>
                     </div>
                 </div>
+
                 <div class="chat-content">
                     <div class="chat-content-list">
                         <div class="bubble-chat user">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum rerum fugit natus, voluptatem veniam molestias ipsum consequatur, dignissimos molestiae sint vero eius aperiam illo aliquid quaerat vel! Quibusdam, doloribus quasi.</div>
-                        <!-- <div class="bubble-chat friend">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, vitae harum! Itaque omnis dignissimos quibusdam expedita voluptates, nulla laborum enim non autem similique saepe! Eius illo perspiciatis natus repellendus ipsa.</div>
-                        <div class="bubble-chat friend">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore facilis sit rem quisquam quod, laboriosam voluptas illum quaerat eligendi in numquam quidem. Libero eaque voluptatibus unde doloribus veniam ab minima!</div>
-                        <div class="bubble-chat user">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt obcaecati aspernatur harum dolorum quia non ab! Reprehenderit sequi amet officiis voluptatibus asperiores quaerat necessitatibus? Eveniet et maiores maxime nemo rerum.</div>
-                        <div class="bubble-chat user">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi nostrum nobis pariatur, sit consequuntur iste aliquam? Maiores, unde laudantium itaque non doloribus error sed cupiditate voluptatibus, odio atque, veniam exercitationem?</div>
-                        <div class="bubble-chat friend">testing</div>
-                        <div class="bubble-chat friend">testing</div>
-                        <div class="bubble-chat friend">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, vitae harum! Itaque omnis dignissimos quibusdam expedita voluptates, nulla laborum enim non autem similique saepe! Eius illo perspiciatis natus repellendus ipsa.</div>
-                        <div class="bubble-chat friend">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore facilis sit rem quisquam quod, laboriosam voluptas illum quaerat eligendi in numquam quidem. Libero eaque voluptatibus unde doloribus veniam ab minima!</div>
-                        <div class="bubble-chat user">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt obcaecati aspernatur harum dolorum quia non ab! Reprehenderit sequi amet officiis voluptatibus asperiores quaerat necessitatibus? Eveniet et maiores maxime nemo rerum.</div>
-                        <div class="bubble-chat user">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi nostrum nobis pariatur, sit consequuntur iste aliquam? Maiores, unde laudantium itaque non doloribus error sed cupiditate voluptatibus, odio atque, veniam exercitationem?</div>
-                        <div class="bubble-chat friend">testing</div>
-                        <div class="bubble-chat friend">testing</div> -->
                     </div>
                 </div>
+
                 <div class="chat-bar">
                     <div class="chat-bar-icon">
                         <div class="bx bx-microphone"></div>
-                        <div class="bx bx-paperclip"></div>
+                        <form action="./UploadController.php" method="POST" enctype="multipart/form-data" id="upload-file">
+
+                            <div class="file-upload">
+                                <div class="upload-list bx bx-paperclip"></div>
+                                <div class="upload-dropdown-menu">
+                                    <div class="upload-doc">
+                                        <label for="doc-input">
+                                            <div class="bx bx-file"></div>
+                                        </label>
+                                        <input type="file" id="doc-input" name="document" disabled>
+                                    </div>
+                                    <div class="upload-pic">
+                                        <label for="pic-input">
+                                            <div class="bx bx-photo-album"></div>
+                                        </label>
+                                        <input type="file" id="pic-input" name="file" onchange="return validatePic()">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="file-preview">
+                                <div class="bx bx-x"></div>
+                                <div class="preview-image">
+                                    <img src="" alt="">
+                                </div>
+                                <div class="submit-file">
+                                    <button type="submit" class="bx bx-send" value="submit"></button>
+                                </div>
+                            </div>
+
+                        </form>
                     </div>
                     <div class="chat-box">
                         <input type="text" placeholder="Type a message">
                     </div>
-                    <div class="bx bx-smile"></div>
+                    <button type="submit" class="bx bx-send"></button>
                 </div>
             </div>
         </div>
