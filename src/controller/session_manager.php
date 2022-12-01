@@ -2,6 +2,10 @@
 
 require_once('utilities.php');
 
+const NO_REDIRECT = array(
+    '/src/view/chat.php'
+);
+
 function session_demolish()
 {
     unset($_SESSION);
@@ -40,11 +44,14 @@ function connect()
 {
     //resume session if a valid match is found, 
     //probe for a new one otherwise
+
     if (isset($_SESSION['name']) && compare(user_fetch(), $_SESSION)) {
         if (time() - $_SESSION['last-login'] > 1 * 60 * 60) {
             session_demolish();
         } else {
-            header('location: ../view/chat.php');
+            if (!in_array($_SERVER['SCRIPT_NAME'], NO_REDIRECT)) {
+                header('location: ../view/chat.php');
+            }
         }
     } else {
         $client = user_fetch();
