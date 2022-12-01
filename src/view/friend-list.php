@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/friend-list.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="../js/chat.js" defer></script>
+    <script src="../js/dropdown.js" defer></script>
     <title>TicTALK</title>
 </head>
 <body>
@@ -14,8 +15,8 @@
         <h1>TicTalk</h1>
         <div class="main-nav">
             <ul>
-                <a href="./friend-list.html"><li class="bx bxs-user active"></li></a>
-                <a href="./chat.html"><li class="bx bxs-message-rounded-dots"></li></a>
+                <a href="./friend-list.php"><li class="bx bxs-user active"></li></a>
+                <a href="./chat.php"><li class="bx bxs-message-rounded-dots"></li></a>
                 <li class="bx bxs-user-plus"></li>
                 <li class="bx bxs-message-rounded-add"></li>
             </ul>
@@ -23,7 +24,12 @@
         <div class="sec-nav">
             <ul>
                 <li class="bx bx-cog"></li>
-                <li class="bx bx-dots-horizontal-rounded"></li>
+                <div class="dropdown">
+                    <button class="link bx bx-dots-horizontal-rounded"></button>
+                    <div class="dropdown-menu">
+                        <a href="#">Log out</a>
+                    </div>
+                </div>
             </ul>
         </div>
     </header>

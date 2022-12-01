@@ -9,12 +9,12 @@ require_once('../controller/session_manager.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/chat.css">
+    <link rel="stylesheet" href="../css/chat.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.js" integrity="sha512-CX7sDOp7UTAq+i1FYIlf9Uo27x4os+kGeoT7rgwvY+4dmjqV0IuE/Bl5hVsjnQPQiTOhAX1O2r2j5bjsFBvv/A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="./js/chat.js" defer></script>
-    <script src="./js/dropdown.js" defer></script>
-    <script src="./js/favourite.js" defer></script>
+    <script src="../js/chat.js" defer></script>
+    <script src="../js/dropdown.js" defer></script>
+    <script src="../js/favourite.js" defer></script>
     <title>TicTALK</title>
 </head>
 
@@ -24,7 +24,7 @@ require_once('../controller/session_manager.php');
 
         <div class="main-nav">
             <ul>
-                <a href="./friend-list.html"><li class="bx bxs-user"></li></a>
+                <a href="./friend-list.php"><li class="bx bxs-user"></li></a>
                 <li class="bx bxs-message-rounded-dots active"></li>
                 <li class="bx bxs-user-plus"></li>
                 <li class="bx bxs-message-rounded-add"></li>
