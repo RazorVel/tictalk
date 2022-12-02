@@ -18,23 +18,6 @@ document.addEventListener("keydown", (e) => {
     }
 });
 
-const textMsg = document.querySelector(".chat-box input");
-const contentList = document.querySelector(".chat-content-list");
-const contentBox = document.querySelector(".chat-content");
-textMsg.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-        const msg = textMsg.value;
-        const newMsg = document.createElement("div");
-        newMsg.classList.add("bubble-chat", "user");
-        newMsg.innerHTML = msg;
-        contentList.appendChild(newMsg);
-        contentBox.scrollTo(0, contentBox.scrollHeight);
-        textMsg.value = "";
-
-        document.getElementById("submit-msg").submit();
-    }
-});
-
 const validatePic = () => {
     document.querySelector(".file-upload.active").classList.remove("active");
 

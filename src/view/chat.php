@@ -19,6 +19,7 @@ require_once('../controller/features.php');
     <script src="../js/chat.js" defer></script>
     <script src="../js/dropdown.js" defer></script>
     <script src="../js/favourite.js" defer></script>
+    <script src="../js/submit.js" defer></script>
     <title>TicTALK</title>
 </head>
 
@@ -184,18 +185,18 @@ require_once('../controller/features.php');
                         ?>
                     </div>
 
-                    <div class="bubble-chat-img user">
+                    <!-- <div class="bubble-chat-img user">
                         <img src="./Untitled.jpg" alt="">
-                    </div>
+                    </div> -->
 
                 </div>
 
                 <div class="chat-bar">
                     <div class="chat-bar-icon">
                         <div class="bx bx-microphone"></div>
+
                         <form action="../controller/upload_controller.php" method="POST" enctype="multipart/form-data"
                             id="upload-file">
-
                             <div class="file-upload">
                                 <div class="upload-list bx bx-paperclip"></div>
                                 <div class="upload-dropdown-menu">
@@ -223,8 +224,8 @@ require_once('../controller/features.php');
                                     <button type="submit" class="bx bx-send" value="submit"></button>
                                 </div>
                             </div>
-
                         </form>
+
                     </div>
 
                     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" id="submit-msg"
