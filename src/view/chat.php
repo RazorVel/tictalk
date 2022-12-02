@@ -262,6 +262,12 @@ require_once('../controller/features.php');
         ";
     }
     ?>
+
+    <script>
+        var div_chat_content = document.querySelector('.chat-content');
+
+        div_chat_content.scrollTop = div_chat_content.scrollHeight;
+    </script>
 </body>
 
 </html>
