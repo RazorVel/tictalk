@@ -3,6 +3,8 @@ require_once('../controller/db_tools.php');
 
 function sendMessage($connection, $src, $dest, $type, $desc)
 {
+    $desc = htmlspecialchars($desc, ENT_QUOTES, 'UTF-8');
+
     $statement = $connection->prepare('
         insert into Chats
             (Source, Destination, Type, Description)
