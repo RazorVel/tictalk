@@ -238,7 +238,7 @@ require_once('../controller/features.php');
                             <input type=\"hidden\" name=\"source\" value=\"{$_SESSION['name']}\">
                             <input type=\"hidden\" name=\"destination\" value=\"{$email}\">
                             <input type=\"hidden\" name=\"type\" value=\"text\">
-                            <input type=\"text\" name=\"chat-message\" placeholder=\"Type a message\">
+                            <input type=\"text\" name=\"chat-message\" id=\"user-chat-box\" placeholder=\"Type a message\">
                             ";
                             ?>
 
@@ -267,6 +267,17 @@ require_once('../controller/features.php');
         var div_chat_content = document.querySelector('.chat-content');
 
         div_chat_content.scrollTop = div_chat_content.scrollHeight;
+        var max_scroll = div_chat_content.scrollHeight - div_chat_content.clientHeight;
+
+        var chat_box = document.querySelector('#user-chat-box');
+
+        window.setInterval(() => {
+            let offset = Math.abs(Math.abs(div_chat_content.scrollTop) - max_scroll);
+            if (chat_box.value == "" && offset <= 10) {
+                window.location.reload();
+            }
+        }, 2000);
+
     </script>
 </body>
 
