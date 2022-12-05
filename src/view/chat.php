@@ -294,7 +294,8 @@ require_once('../controller/features.php');
                 chat_box.value == "" &&
                 offset <= 10 &&
                 !file_upload_toggle.classList.contains('active') &&
-                !file_preview.classList.contains('active')
+                !file_preview.classList.contains('active') &&
+                !(document.activeElement === chat_box)
             ) {
                 window.location.reload();
             }
