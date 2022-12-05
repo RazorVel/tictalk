@@ -1,5 +1,12 @@
 <?php
+require_once('../controller/utilities.php');
+require_once('../controller/session_manager.php');
+require_once('../controller/db_tools.php');
+require_once('../controller/features.php');
+
 $max_file_size = 1024 * 1024 * 25;
+
+// setlocale(LC_ALL, 'en_US.UTF-8');
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $file_name = $_FILES['file']['name'];
@@ -30,9 +37,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         die;
     }
 
-    // $new_file_path = "./uploads/$file_name";
-    // move_uploaded_file($temp_file_path, $new_file_path);
+    while ($new_file_path = "../../assets/uploads/" . keyGen(200) . "." . pathinfo($file_name, PATHINFO_EXTENSION)) {
+        if (!file_exists($new_file_path)) {
+            break;
+        }
+    }
 
-    // header('Location: ./chat.php');
+    move_uploaded_file($temp_file_path, $new_file_path);
+
+    sendMessage($connection, $_POST['source'], $_POST['destination'], $_POST['type'], $new_file_path);
+
+    header('Location: ../view/chat.php' . '?contact=' . $_POST['contact']);
 }
 ?>

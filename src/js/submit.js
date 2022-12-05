@@ -15,22 +15,22 @@ textMsg.addEventListener("keydown", (e) => {
     }
 });
 
-const submitFile = document.querySelector('#upload-file');
-submitFile.addEventListener('submit', e => {
-    e.preventDefault();
+// const submitFile = document.querySelector('#upload-file');
+// submitFile.addEventListener('submit', e => {
+//     e.preventDefault();
 
-    const newImageMsg = document.createElement('div');
-    newImageMsg.classList.add('bubble-chat-img', 'user');
+//     const newImageMsg = document.createElement('div');
+//     newImageMsg.classList.add('bubble-chat-img', 'user');
 
-    const img = document.querySelector('.preview-image img').src;
-    const newImage = document.createElement('img');
+//     const img = document.querySelector('.preview-image img').src;
+//     const newImage = document.createElement('img');
 
-    newImage.setAttribute('src', img);
-    newImageMsg.appendChild(newImage);
+//     newImage.setAttribute('src', img);
+//     newImageMsg.appendChild(newImage);
 
-    contentList.appendChild(newImageMsg);
-    contentBox.scrollTo(0, contentBox.scrollHeight);
+//     contentList.appendChild(newImageMsg);
+//     contentBox.scrollTo(0, contentBox.scrollHeight);
 
-    const preview = document.querySelector('.file-preview');
-    preview.classList.remove('active');
-})
+//     const preview = document.querySelector('.file-preview');
+//     preview.classList.remove('active');
+// })

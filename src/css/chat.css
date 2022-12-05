@@ -286,7 +286,7 @@ header ul {
 .chat-content-list {
     /* height: 1000px; */
     min-height: 100%;
-    /* border: 1px solid black; */
+    /* border: 1px solid red; */
     padding: 10px 50px;
     display: flex;
     flex-direction: column;
@@ -304,10 +304,11 @@ header ul {
 }
 
 .bubble-chat-img {
-    margin: 5px;
+    margin: 5px 0;
     width: fit-content;
     max-width: 30%;
-    border: 1px solid red;
+    /* border: 1px solid red; */
+    height:300px;
 }
 
 .bubble-chat-img.user {
@@ -316,6 +317,7 @@ header ul {
 
 .bubble-chat-img img {
     width: 100%;
+    height: 300px;
 }
 
 .bubble-chat.user {
