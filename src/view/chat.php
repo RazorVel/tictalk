@@ -210,6 +210,10 @@ require_once('../controller/features.php');
                                         <label for="pic-input">
                                             <div class="bx bx-photo-album"></div>
                                         </label>
+                                        <input type="hidden" name="contact" value="{$_GET['contact']}">
+                                        <input type="hidden" name="source" value="{$_SESSION['name']}">
+                                        <input type="hidden" name="destination" value="{$email}">
+                                        <input type="hidden" name="type" value="image">
                                         <input type="file" id="pic-input" name="file" onchange="return validatePic()">
                                     </div>
                                 </div>
@@ -273,7 +277,9 @@ require_once('../controller/features.php');
 
         window.setInterval(() => {
             let offset = Math.abs(Math.abs(div_chat_content.scrollTop) - max_scroll);
-            if (chat_box.value == "" && offset <= 10) {
+            let file_upload_toggle = document.querySelector('.file-upload');
+
+            if (chat_box.value == "" && offset <= 10 && !file_upload_toggle.classList.contains('active')) {
                 window.location.reload();
             }
         }, 2000);
